@@ -1,12 +1,19 @@
 package com.izaiasvalentim.general.Domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String name;
     private String brach;
     private String address;
     private String typeOfService;
-
     public Company(String name, String brach, String address, String typeOfService) {
         this.name = name;
         this.brach = brach;
