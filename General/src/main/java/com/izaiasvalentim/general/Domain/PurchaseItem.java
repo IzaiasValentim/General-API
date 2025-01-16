@@ -1,11 +1,21 @@
 package com.izaiasvalentim.general.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+
 import java.util.UUID;
 
+@Entity
 public class PurchaseItem {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "resource_id")
     private Resource item;
+    @ManyToOne
+    @JoinColumn(name = "purchase_id", referencedColumnName = "id")
+    @JsonBackReference
     private Purchase purchase;
     private long quantity;
 
