@@ -1,10 +1,18 @@
 package com.izaiasvalentim.general.Domain;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
 public class Access {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+    @OneToOne
+    @JoinColumn(name = "apiUser_id")
     private ApiUser user;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     public Access(ApiUser user, Date date) {
