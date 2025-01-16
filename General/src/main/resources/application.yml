@@ -1,1 +1,3 @@
-spring.application.name=General
+spring:
+  profiles:
+    active: ${ACTUAL_PROF}
