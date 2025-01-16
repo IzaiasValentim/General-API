@@ -1,22 +1,33 @@
 package com.izaiasvalentim.general.Domain;
 
 import com.IzaiasValentim.general_api.Domain.Enums.TypePurchaseStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-
+@Entity
 public class Purchase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private Double total;
     private String paymentMethod;
+    @OneToOne
+    @JoinColumn(name = "apiUser_id")
     private ApiUser seller;
     private String client;
+    @Column(name = "status_id")
     private int status;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date realizationDate;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date hiredDate;
     private Boolean isDeleted;
+    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<PurchaseItem> purchaseItems;
 
     public Purchase(Double total, String paymentMethod, ApiUser seller, String client, int status,
@@ -74,6 +85,7 @@ public class Purchase {
         this.client = client;
     }
 
+    @Transient
     public String getStatus() {
         return TypePurchaseStatus.getStatusById(this.status);
     }
