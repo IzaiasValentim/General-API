@@ -1,23 +1,30 @@
 package com.izaiasvalentim.general.Domain;
 
 import com.IzaiasValentim.general_api.Domain.Enums.TypeRoles;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
-
+@Entity
 public class ApiUser {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String username;
     private String CPF;
     private String email;
     private String phone;
     private String address;
+    @Column(name = "id_role")
     private int role;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date admissionDate;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date shutdowsDate;
     private Boolean isAdmin;
     private Boolean isActive;
     private Boolean isDeleted;
+
 
     public ApiUser(String email, String username, String CPF, String phone, String address,
                    Date admissionDate, Date shutdowsDate, Boolean isActive, Boolean isDeleted) {
@@ -32,6 +39,7 @@ public class ApiUser {
         this.isDeleted = isDeleted;
     }
 
+    @Transient
     public int getLevel() {
         return TypeRoles.getLevelById(this.role);
     }
