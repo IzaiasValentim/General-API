@@ -1,10 +1,17 @@
 package com.izaiasvalentim.general.Domain;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+@Entity
 public class Resource {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+    @Column(nullable = false, name = "item_name")
     private String name;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Item> items;
     private String itemCode;
     private Double stock;
@@ -68,4 +75,5 @@ public class Resource {
         this.stock = stock;
     }
 }
+
 
