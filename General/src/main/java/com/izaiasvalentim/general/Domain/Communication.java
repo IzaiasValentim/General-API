@@ -1,13 +1,19 @@
 package com.izaiasvalentim.general.Domain;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
-
+@Entity
 public class Communication {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String message;
     private int scope;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
     private Boolean isDeleted;
 
