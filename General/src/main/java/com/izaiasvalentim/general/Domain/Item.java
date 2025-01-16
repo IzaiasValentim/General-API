@@ -1,8 +1,13 @@
 package com.izaiasvalentim.general.Domain;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
 public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
     private String type;
@@ -10,6 +15,7 @@ public class Item {
     private Double quantity;
     private String batch;
     private String code;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date validity;
     private Boolean hasValidity;
     private boolean isDeleted;
