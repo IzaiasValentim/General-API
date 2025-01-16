@@ -1,4 +1,112 @@
 package com.izaiasvalentim.general.Domain;
 
+import java.util.Date;
+
 public class Item {
+    private long id;
+    private String name;
+    private String type;
+    private Double price;
+    private Double quantity;
+    private String batch;
+    private String code;
+    private Date validity;
+    private Boolean hasValidity;
+    private boolean isDeleted;
+
+    public Item(String name, String type, Double price, Double quantity, String batch, String code,
+                Date validity, Boolean hasValidity, boolean isDeleted) {
+        this.name = name;
+        this.type = type;
+        this.price = price;
+        this.quantity = quantity;
+        this.batch = batch;
+        this.code = code;
+        this.validity = validity;
+        this.hasValidity = hasValidity;
+        this.isDeleted = isDeleted;
+    }
+
+    public Item() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Date getValidity() {
+        return validity;
+    }
+
+    public void setValidity(Date validity) {
+        this.validity = validity;
+    }
+
+    public Boolean getHasValidity() {
+        return hasValidity;
+    }
+
+    public void setHasValidity(Boolean hasValidity) {
+        this.hasValidity = hasValidity;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 }
