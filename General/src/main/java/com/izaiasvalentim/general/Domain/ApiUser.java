@@ -1,6 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
-import com.IzaiasValentim.general_api.Domain.Enums.TypeRoles;
+import com.izaiasvalentim.general.Domain.Enums.TypeRoles;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -11,7 +11,9 @@ public class ApiUser {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String username;
+    @Column(unique = true)
     private String CPF;
+    @Column(unique = true)
     private String email;
     private String phone;
     private String address;

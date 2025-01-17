@@ -1,4 +1,4 @@
-package com.IzaiasValentim.general_api.Domain.Enums;
+package com.izaiasvalentim.general.Domain.Enums;
 
 public enum TypePurchaseStatus {
     RECEIVED(1, "Received"),

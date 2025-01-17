@@ -1,6 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
-import com.IzaiasValentim.general_api.Domain.Enums.TypePurchaseStatus;
+import com.izaiasvalentim.general.Domain.Enums.TypePurchaseStatus;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
