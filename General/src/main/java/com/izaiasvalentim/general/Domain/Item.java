@@ -13,7 +13,7 @@ public class Item {
     private String type;
     private Double price;
     private Double quantity;
-    @Column(unique = true)
+    @Column(unique = true, nullable = true)
     private String batch;
     private String code;
     @Temporal(TemporalType.TIMESTAMP)
