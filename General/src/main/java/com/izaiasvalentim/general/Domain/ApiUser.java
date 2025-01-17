@@ -1,6 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
-import com.IzaiasValentim.general_api.Domain.Enums.TypeRoles;
+import com.izaiasvalentim.general.Domain.Enums.TypeRoles;
 import jakarta.persistence.*;
 
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.IzaiasValentim.general_api.Domain.Enums;
+package com.izaiasvalentim.general.Domain.Enums;
 
 public enum TypeRoles {
     ADMIN(1, 100, "ADMINISTRATOR"),
@@ -10,7 +10,7 @@ public enum TypeRoles {
     private final int level;
     private final String name;
 
-    private TypeRoles(int id, int level, String name) {
+    TypeRoles(int id, int level, String name) {
         this.id = id;
         this.level = level;
         this.name = name;
