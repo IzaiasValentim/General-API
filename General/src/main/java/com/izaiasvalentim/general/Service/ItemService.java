@@ -68,7 +68,7 @@ public class ItemService {
 
     public void deleteItemStockByBatch(String batch) {
 
-        var batchToDelete = itemRepository.findFirstByName(batch).orElse(null);
+        var batchToDelete = itemRepository.findByBatch(batch).orElse(null);
         if (batchToDelete != null) {
             itemRepository.delete(batchToDelete);
         } else {
