@@ -10,7 +10,7 @@ public class ItemUtils {
             throw new IllegalArgumentException("O nome do item deve ter pelo menos 2 caracteres.");
         }
         String prefixo = item.getName().substring(0, 2).toUpperCase();
-        item.setName(prefixo + item.getId());
+        item.setBatch(prefixo + item.getId());
         return item;
     }
 }
