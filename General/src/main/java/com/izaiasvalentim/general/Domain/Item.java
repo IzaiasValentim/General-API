@@ -1,5 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.izaiasvalentim.general.Domain.DTO.Item.ItemDTO;
 import jakarta.persistence.*;
 
@@ -21,6 +22,10 @@ public class Item {
     private Date validity;
     private Boolean hasValidity;
     private boolean isDeleted;
+    @ManyToOne
+    @JoinColumn(name = "resource_id")
+    @JsonBackReference
+    private Resource resource;
 
     public Item(String name, String type, Double price, Double quantity, String batch, String code,
                 Date validity, Boolean hasValidity, boolean isDeleted) {
@@ -116,6 +121,14 @@ public class Item {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
     public static Item itemDTOToItem(ItemDTO dto) {
