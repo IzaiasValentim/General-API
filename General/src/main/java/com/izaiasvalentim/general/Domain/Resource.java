@@ -1,5 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,7 +12,8 @@ public class Resource {
     private long id;
     @Column(nullable = false, name = "item_name")
     private String name;
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "resource", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Item> items;
     private String itemCode;
     private Double stock;
