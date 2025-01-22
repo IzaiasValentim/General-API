@@ -1,5 +1,8 @@
 package com.izaiasvalentim.general.Service;
 
+import com.izaiasvalentim.general.Common.CustomExceptions.ErrorInProcessServiceException;
+import com.izaiasvalentim.general.Common.CustomExceptions.ResourceAlreadyExistsException;
+import com.izaiasvalentim.general.Common.CustomExceptions.ResourceNotFoundException;
 import com.izaiasvalentim.general.Common.utils.ItemUtils;
 import com.izaiasvalentim.general.Domain.DTO.Item.ItemAddStockDTO;
 import com.izaiasvalentim.general.Domain.Item;
@@ -22,8 +25,8 @@ public class ItemService {
     public Item registerNewItem(Item item) {
         try {
             if (itemRepository.findFirstByName(item.getName()).isPresent()) {
-                // É para ser gerada uma exceção personalizada. ItemAlreadyExists.
-                return null;
+                throw new ResourceAlreadyExistsException("Item with name " + item.getName() + " already exists. " +
+                        "Try add stock for this item.");
             }
             item.setDeleted(false);
             var savedItem = itemRepository.save(item);
@@ -31,13 +34,14 @@ public class ItemService {
 
             return itemRepository.save(savedItem);
         } catch (Exception e) {
-            return null;
+            throw new ErrorInProcessServiceException(e.getMessage());
         }
     }
 
     public Item addItemStock(ItemAddStockDTO itemDTO) {
         try {
             Item validateItem = itemRepository.findFirstByName(itemDTO.getName()).orElse(null);
+
             if (validateItem != null) {
 
                 Item newItem = new Item();
@@ -54,11 +58,10 @@ public class ItemService {
 
                 return itemRepository.save(savedItem);
             } else {
-                // Deve retornar exception
-                return null;
+                throw new ResourceNotFoundException("Item with name " + itemDTO.getName() + " does not exist.");
             }
         } catch (Exception e) {
-            return null;
+            throw new ErrorInProcessServiceException(e.getMessage());
         }
     }
 
@@ -66,14 +69,19 @@ public class ItemService {
         return itemRepository.findAllByName(name).orElse(List.of());
     }
 
-    public void deleteItemStockByBatch(String batch) {
-
-        var batchToDelete = itemRepository.findByBatch(batch).orElse(null);
-        if (batchToDelete != null) {
-            itemRepository.delete(batchToDelete);
-        } else {
-            //Gerar exception.
+    public boolean deleteItemStockByBatch(String batch) {
+        try {
+            var batchToDelete = itemRepository.findByBatch(batch).orElse(null);
+            if (batchToDelete != null) {
+                itemRepository.delete(batchToDelete);
+                return true;
+            } else {
+                throw new ResourceNotFoundException("Item with name " + batch + " does not exist.");
+            }
+        } catch (Exception e) {
+            throw new ErrorInProcessServiceException(e.getMessage());
         }
+
     }
 
 }
