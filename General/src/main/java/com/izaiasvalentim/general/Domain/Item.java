@@ -1,5 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
+import com.izaiasvalentim.general.Domain.DTO.Item.ItemDTO;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -13,7 +14,7 @@ public class Item {
     private String type;
     private Double price;
     private Double quantity;
-    @Column(unique = true)
+    @Column(unique = true, nullable = true)
     private String batch;
     private String code;
     @Temporal(TemporalType.TIMESTAMP)
@@ -115,5 +116,10 @@ public class Item {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public static Item itemDTOToItem(ItemDTO dto) {
+        return new Item(dto.name(), dto.type(), dto.price(), dto.quantity(), null, dto.code(), dto.validity(),
+                dto.hasValidity(), false);
     }
 }
