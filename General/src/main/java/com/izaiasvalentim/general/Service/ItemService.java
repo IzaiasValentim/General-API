@@ -7,6 +7,7 @@ import com.izaiasvalentim.general.Common.utils.ItemUtils;
 import com.izaiasvalentim.general.Domain.DTO.Item.ItemAddStockDTO;
 import com.izaiasvalentim.general.Domain.Item;
 import com.izaiasvalentim.general.Repository.ItemRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,16 @@ import java.util.List;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final ResourceService resourceService;
+
 
     @Autowired
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, ResourceService resourceService) {
         this.itemRepository = itemRepository;
+        this.resourceService = resourceService;
     }
 
+    @Transactional
     public Item registerNewItem(Item item) {
         try {
             if (itemRepository.findFirstByName(item.getName()).isPresent()) {
@@ -32,12 +37,17 @@ public class ItemService {
             var savedItem = itemRepository.save(item);
             ItemUtils.generateItemBatch(savedItem);
 
-            return itemRepository.save(savedItem);
+            resourceService.createResourceAfterInitialItem(savedItem);
+
+            itemRepository.save(savedItem);
+
+            return savedItem;
         } catch (Exception e) {
             throw new ErrorInProcessServiceException(e.getMessage());
         }
     }
 
+    @Transactional
     public Item addItemStock(ItemAddStockDTO itemDTO) {
         try {
             Item validateItem = itemRepository.findFirstByName(itemDTO.getName()).orElse(null);
@@ -56,7 +66,11 @@ public class ItemService {
                 var savedItem = itemRepository.save(newItem);
                 ItemUtils.generateItemBatch(savedItem);
 
-                return itemRepository.save(savedItem);
+                resourceService.updateResourceAfterChangedItemStock(savedItem);
+
+                itemRepository.save(savedItem);
+
+                return savedItem;
             } else {
                 throw new ResourceNotFoundException("Item with name " + itemDTO.getName() + " does not exist.");
             }
@@ -69,10 +83,13 @@ public class ItemService {
         return itemRepository.findAllByName(name).orElse(List.of());
     }
 
+    @Transactional
     public boolean deleteItemStockByBatch(String batch) {
         try {
             var batchToDelete = itemRepository.findByBatch(batch).orElse(null);
             if (batchToDelete != null) {
+                batchToDelete.setDeleted(true);
+                resourceService.updateResourceAfterChangedItemStock(batchToDelete);
                 itemRepository.delete(batchToDelete);
                 return true;
             } else {
