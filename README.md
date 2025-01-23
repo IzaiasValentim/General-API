@@ -24,5 +24,27 @@ This project consist on a generic API for service automation, developed with a f
 
 The main objective of this project is to simplify the development of solutions for different business sectors, allowing developers and companies to quickly configure and adapt a ready-made API to their business needs.
 
+## Planning & Action
+
+The following process flow was adopted to execute the project:
+
+<div align="center">
+    <a href="https://github.com/IzaiasValentim/General-API/blob/dev/models/process_flow.png" target="_blank">
+        <img src="https://github.com/IzaiasValentim/General-API/blob/dev/models/process_flow.png" 
+        alt="Logo" width="732" height="241">
+    </a>
+</div>
+
+- ### Progress:
+  - [x] Project and Requirements
+  - [x] Planning
+  - [x] [System Design](https://github.com/IzaiasValentim/General-API/tree/dev/models)
+  - [ ] [Development](https://github.com/IzaiasValentim/General-API/) (current phase)
+  - [ ] Testing and Validation
+
+> [!NOTE]
+> **_Project Requirements_** and **_Planning_** were done in personal spreadsheets. So I decided not to share them.
+
 #### CREDITS:
 - [Sample readme](https://github.com/YousefIbrahimismail/Project-README-Template/tree/main)
+- [Github markdown](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
