@@ -11,7 +11,7 @@
 -->
 
 <div align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=33&pause=1000&color=48AB20&background=26FFDE0F&center=true&vCenter=true&width=435&lines=General+API!" alt="Typing SVG" /></a>
+<a href="#"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=33&pause=1000&color=48AB20&background=26FFDE0F&center=true&vCenter=true&width=435&lines=General+API!" alt="Typing SVG" /></a>
 </div>
 
 ## About & Motivation<!-- Required -->
@@ -48,3 +48,4 @@ The following process flow was adopted to execute the project:
 #### CREDITS:
 - [Sample readme](https://github.com/YousefIbrahimismail/Project-README-Template/tree/main)
 - [Github markdown](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [Readme Typing SVG](https://readme-typing-svg.demolab.com/demo/)
