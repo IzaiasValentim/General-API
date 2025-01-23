@@ -29,8 +29,8 @@ The main objective of this project is to simplify the development of solutions f
 The following process flow was adopted to execute the project:
 
 <div align="center">
-    <a href="https://github.com/IzaiasValentim/General-API/blob/dev/models/process_flow.png" target="_blank">
-        <img src="https://github.com/IzaiasValentim/General-API/blob/dev/models/process_flow.png" 
+    <a href="https://github.com/IzaiasValentim/General-API/blob/dev/models/Process_Flow.png" target="_blank">
+        <img src="https://github.com/IzaiasValentim/General-API/blob/dev/models/Process_Flow.png" 
         alt="Logo" width="732" height="241">
     </a>
 </div>
