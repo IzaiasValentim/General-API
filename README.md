@@ -1,6 +1,6 @@
 <div align="center">
-    <a href="https://github.com/IzaiasValentim/General-API/blob/dev/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/YousefIbrahimismail/Project-README-Template?color=ff69b4&style=for-the-badge"></a>
     <a href="https://www.linkedin.com/in/izaiasvalentim/"><img alt="Linkedlin" src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555"></a>
+    <a href="https://github.com/IzaiasValentim/General-API/blob/dev/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/YousefIbrahimismail/Project-README-Template?color=ff69b4&style=for-the-badge"></a>
 </div>
 <br>
 
@@ -11,7 +11,7 @@
 -->
 
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=4000&pause=5000&background=FFFFFF00&center=true&vCenter=true&multiline=true&width=435&lines=General API!">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=33&pause=1000&color=48AB20&background=26FFDE0F&center=true&vCenter=true&width=435&lines=General+API!" alt="Typing SVG" /></a>
 </div>
 
 ## About & Motivation<!-- Required -->
