@@ -1,7 +1,9 @@
 package com.izaiasvalentim.general.Domain;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -12,12 +14,12 @@ public class Communication {
     private String message;
     private int scope;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private LocalDate creationDate;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    private LocalDate endDate;
     private Boolean isDeleted;
 
-    public Communication(String message, int scope, Date creationDate, Date endDate, Boolean isDeleted) {
+    public Communication(String message, int scope, LocalDate creationDate, LocalDate endDate, Boolean isDeleted) {
         this.message = message;
         this.scope = scope;
         this.creationDate = creationDate;
@@ -52,19 +54,19 @@ public class Communication {
         this.scope = scope;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
