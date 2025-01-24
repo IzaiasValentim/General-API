@@ -23,18 +23,18 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getCompany());
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> addCompany(@RequestBody Company company) {
         var savedCompany = companyService.createCompany(company);
         return new ResponseEntity<>(savedCompany, HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/")
     public ResponseEntity<?> updateCompany(@RequestBody Company company) {
         return new ResponseEntity<>(companyService.updateCompany(company), HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/")
     public ResponseEntity<?> deleteCompany() {
         companyService.deleteCompany();
         return ResponseEntity.ok().build();
