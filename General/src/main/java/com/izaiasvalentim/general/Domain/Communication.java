@@ -11,9 +11,9 @@ public class Communication {
     private long id;
     private String message;
     private int scope;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private LocalDate creationDate;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private LocalDate endDate;
     private Boolean isDeleted;
 
