@@ -41,7 +41,7 @@ public class ItemController {
         return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "deleteByBatch")
+    @DeleteMapping(value = "deleteByBatch/")
     public ResponseEntity<?> deleteItemByBatch(@RequestParam String batch) {
         var isExcluded = itemService.deleteItemStockByBatch(batch);
 
