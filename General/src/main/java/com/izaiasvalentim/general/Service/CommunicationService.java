@@ -3,6 +3,7 @@ package com.izaiasvalentim.general.Service;
 import com.izaiasvalentim.general.Common.CustomExceptions.ErrorInProcessServiceException;
 import com.izaiasvalentim.general.Common.CustomExceptions.ResourceNotFoundException;
 import com.izaiasvalentim.general.Domain.Communication;
+import com.izaiasvalentim.general.Domain.DTO.Communication.CommunicationUpdateDTO;
 import com.izaiasvalentim.general.Repository.CommunicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +22,9 @@ public class CommunicationService {
         this.communicationRepository = communicationRepository;
     }
 
-    public void registerNewCommunication(Communication communication) {
+    public Communication registerNewCommunication(Communication communication) {
         try {
-            communicationRepository.save(communication);
+            return communicationRepository.save(communication);
         } catch (Exception e) {
             throw new ErrorInProcessServiceException(e.getMessage());
         }
@@ -38,21 +39,21 @@ public class CommunicationService {
         return communicationRepository.findByIsDeletedFalse(pageable).getContent();
     }
 
-    public Communication updateCommunication(Communication updateDto) {
-        Communication communication = communicationRepository.findById(updateDto.getId()).orElse(null);
+    public Communication updateCommunication(CommunicationUpdateDTO updateDto) {
+        Communication communication = communicationRepository.findById(updateDto.id()).orElse(null);
 
         if (communication == null) {
-            throw new ResourceNotFoundException("Communication with id " + updateDto.getId() + " not found");
+            throw new ResourceNotFoundException("Communication with id " + updateDto.id() + " not found");
         }
 
-        if (updateDto.getMessage() != null && !updateDto.getMessage().isEmpty()) {
-            communication.setMessage(updateDto.getMessage());
+        if (updateDto.message() != null && !updateDto.message().isEmpty()) {
+            communication.setMessage(updateDto.message());
         }
-        if (updateDto.getScope() >= 0) {
-            communication.setScope(updateDto.getScope());
+        if (updateDto.scope() >= 0) {
+            communication.setScope(updateDto.scope());
         }
-        if (updateDto.getEndDate() != null && updateDto.getEndDate().isAfter(communication.getEndDate())) {
-            communication.setEndDate(updateDto.getEndDate());
+        if (updateDto.endDate() != null && updateDto.endDate().isAfter(communication.getEndDate())) {
+            communication.setEndDate(updateDto.endDate());
         }
         return communicationRepository.save(communication);
     }
@@ -68,13 +69,12 @@ public class CommunicationService {
         return communicationRepository.save(communicationToEnd);
     }
 
-    public void deleteCommunication(long id) {
+    public Communication deleteCommunication(long id) {
         Communication communicationToDelete = communicationRepository.findById(id).orElse(null);
         if (communicationToDelete == null) {
             throw new ResourceNotFoundException("Communication with id " + id + " not found");
         }
         communicationToDelete.setDeleted(true);
-
-        communicationRepository.save(communicationToDelete);
+        return communicationRepository.save(communicationToDelete);
     }
 }
