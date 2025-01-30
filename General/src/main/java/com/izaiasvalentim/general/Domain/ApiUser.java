@@ -12,6 +12,7 @@ public class ApiUser {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+    @Column(unique = true)
     private String username;
     @Column(unique = true)
     private String CPF;
