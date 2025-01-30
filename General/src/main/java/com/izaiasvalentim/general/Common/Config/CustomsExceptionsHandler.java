@@ -1,6 +1,7 @@
 package com.izaiasvalentim.general.Common.Config;
 
 import com.izaiasvalentim.general.Common.CustomExceptions.ErrorInProcessServiceException;
+import com.izaiasvalentim.general.Common.CustomExceptions.InvalidRoleException;
 import com.izaiasvalentim.general.Common.CustomExceptions.ResourceAlreadyExistsException;
 import com.izaiasvalentim.general.Common.CustomExceptions.ResourceNotFoundException;
 import com.izaiasvalentim.general.Common.utils.StandardErrorModel;
@@ -43,5 +44,10 @@ public class CustomsExceptionsHandler {
     public ResponseEntity<StandardErrorModel> errorInProcessService
             (ErrorInProcessServiceException errorInProcessServiceException, HttpServletRequest request) {
         return generateStandardErrorModel(errorInProcessServiceException, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InvalidRoleException.class)
+    public ResponseEntity<StandardErrorModel> invalidRole(InvalidRoleException invalidRoleException, HttpServletRequest request) {
+        return generateStandardErrorModel(invalidRoleException, request, HttpStatus.BAD_REQUEST);
     }
 }
