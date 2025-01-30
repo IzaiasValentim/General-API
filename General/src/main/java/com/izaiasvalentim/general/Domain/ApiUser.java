@@ -2,7 +2,9 @@ package com.izaiasvalentim.general.Domain;
 
 import com.izaiasvalentim.general.Domain.Enums.TypeRoles;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,17 +21,17 @@ public class ApiUser {
     private String address;
     @Column(name = "id_role")
     private int role;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date admissionDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date shutdowsDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate admissionDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate shutdowsDate;
     private Boolean isAdmin;
     private Boolean isActive;
     private Boolean isDeleted;
 
 
     public ApiUser(String email, String username, String CPF, String phone, String address,
-                   Date admissionDate, Date shutdowsDate, Boolean isActive, Boolean isDeleted) {
+                   LocalDate admissionDate, LocalDate shutdowsDate, Boolean isActive, Boolean isDeleted) {
         this.email = email;
         this.username = username;
         this.CPF = CPF;
@@ -105,19 +107,19 @@ public class ApiUser {
         this.address = address;
     }
 
-    public Date getAdmissionDate() {
+    public LocalDate getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(Date admissionDate) {
+    public void setAdmissionDate(LocalDate admissionDate) {
         this.admissionDate = admissionDate;
     }
 
-    public Date getShutdowsDate() {
+    public LocalDate getShutdowsDate() {
         return shutdowsDate;
     }
 
-    public void setShutdowsDate(Date shutdowsDate) {
+    public void setShutdowsDate(LocalDate shutdowsDate) {
         this.shutdowsDate = shutdowsDate;
     }
 
