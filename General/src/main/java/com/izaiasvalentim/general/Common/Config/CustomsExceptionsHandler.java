@@ -1,9 +1,6 @@
 package com.izaiasvalentim.general.Common.Config;
 
-import com.izaiasvalentim.general.Common.CustomExceptions.ErrorInProcessServiceException;
-import com.izaiasvalentim.general.Common.CustomExceptions.InvalidRoleException;
-import com.izaiasvalentim.general.Common.CustomExceptions.ResourceAlreadyExistsException;
-import com.izaiasvalentim.general.Common.CustomExceptions.ResourceNotFoundException;
+import com.izaiasvalentim.general.Common.CustomExceptions.*;
 import com.izaiasvalentim.general.Common.utils.StandardErrorModel;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -49,5 +46,10 @@ public class CustomsExceptionsHandler {
     @ExceptionHandler(InvalidRoleException.class)
     public ResponseEntity<StandardErrorModel> invalidRole(InvalidRoleException invalidRoleException, HttpServletRequest request) {
         return generateStandardErrorModel(invalidRoleException, request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<StandardErrorModel> userAlreadyExists(UserAlreadyExistsException userAlreadyExistsException, HttpServletRequest request) {
+        return generateStandardErrorModel(userAlreadyExistsException, request, HttpStatus.CONFLICT);
     }
 }
