@@ -1,7 +1,7 @@
 package com.izaiasvalentim.general.Controller;
 
-import com.izaiasvalentim.general.Domain.ApiUser;
 import com.izaiasvalentim.general.Domain.DTO.ApiUser.ApiUserRegisterDTO;
+import com.izaiasvalentim.general.Domain.DTO.ApiUser.ApiUserReturnDTO;
 import com.izaiasvalentim.general.Service.ApiUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class ApiUserController {
 
     @PostMapping("/")
     public ResponseEntity<?> createUser(@RequestBody ApiUserRegisterDTO dto) {
-        ApiUserRegisterDTO userSaved = apiUserService.registerUser(dto);
+        ApiUserReturnDTO userSaved = apiUserService.registerUser(dto);
         return new ResponseEntity<>(userSaved, HttpStatus.CREATED);
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> updateUSer(@RequestBody ApiUserRegisterDTO dto) {
-        ApiUserRegisterDTO userUpdated = apiUserService.updateUser(dto);
+    public ResponseEntity<?> updateUser(@RequestBody ApiUserRegisterDTO dto) {
+        ApiUserReturnDTO userUpdated = apiUserService.updateUser(dto);
         return new ResponseEntity<>(userUpdated, HttpStatus.OK);
     }
 
     // Temporary Method.
     @GetMapping()
     public ResponseEntity<?> getUserByUsername(@RequestParam String username) {
-        ApiUser apiUser = apiUserService.getUserByUsername(username);
+        ApiUserReturnDTO apiUser = apiUserService.getUserByUsername(username);
 
         return new ResponseEntity<>(apiUser, HttpStatus.OK);
     }
