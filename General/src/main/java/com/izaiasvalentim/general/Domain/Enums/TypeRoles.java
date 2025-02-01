@@ -1,5 +1,7 @@
 package com.izaiasvalentim.general.Domain.Enums;
 
+import com.izaiasvalentim.general.Common.CustomExceptions.InvalidRoleException;
+
 public enum TypeRoles {
     ADMIN(1, 100, "ADMINISTRATOR"),
     MANAGER(2, 80, "MANAGER"),
@@ -22,7 +24,7 @@ public enum TypeRoles {
                 return role.getLevel();
             }
         }
-        return 0;
+        throw new InvalidRoleException("Invalid role id: " + id);
     }
 
     public static String getNameById(int id) {
@@ -31,7 +33,7 @@ public enum TypeRoles {
                 return role.getName();
             }
         }
-        return "";
+        throw new InvalidRoleException("Invalid role id: " + id);
     }
 
     public static TypeRoles getTypeById(int id) {
@@ -40,7 +42,7 @@ public enum TypeRoles {
                 return role;
             }
         }
-        return null;
+        throw new InvalidRoleException("Invalid role id: " + id);
     }
 
     public int getId() {

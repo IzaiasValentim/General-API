@@ -3,36 +3,27 @@ package com.izaiasvalentim.general.Domain;
 import com.izaiasvalentim.general.Domain.Enums.TypeRoles;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class ApiUser {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    private String username;
-    @Column(unique = true)
-    private String CPF;
-    @Column(unique = true)
-    private String email;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private BaseUser user;
     private String phone;
     private String address;
-    @Column(name = "id_role")
-    private int role;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date admissionDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date shutdowsDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate admissionDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate shutdowsDate;
     private Boolean isAdmin;
     private Boolean isActive;
     private Boolean isDeleted;
 
-
     public ApiUser(String email, String username, String CPF, String phone, String address,
-                   Date admissionDate, Date shutdowsDate, Boolean isActive, Boolean isDeleted) {
-        this.email = email;
-        this.username = username;
-        this.CPF = CPF;
+                   LocalDate admissionDate, LocalDate shutdowsDate, Boolean isActive, Boolean isDeleted) {
         this.phone = phone;
         this.address = address;
         this.admissionDate = admissionDate;
@@ -41,22 +32,8 @@ public class ApiUser {
         this.isDeleted = isDeleted;
     }
 
-    @Transient
-    public int getLevel() {
-        return TypeRoles.getLevelById(this.role);
-    }
-
-    public void setRole(TypeRoles role) {
-        if (role == null) {
-            this.role = 0;
-        } else {
-            this.role = role.getId();
-        }
-    }
-
     public ApiUser() {
     }
-
     public long getId() {
         return id;
     }
@@ -65,28 +42,12 @@ public class ApiUser {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public BaseUser getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(BaseUser user) {
+        this.user = user;
     }
 
     public String getPhone() {
@@ -105,19 +66,19 @@ public class ApiUser {
         this.address = address;
     }
 
-    public Date getAdmissionDate() {
+    public LocalDate getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(Date admissionDate) {
+    public void setAdmissionDate(LocalDate admissionDate) {
         this.admissionDate = admissionDate;
     }
 
-    public Date getShutdowsDate() {
+    public LocalDate getShutdowsDate() {
         return shutdowsDate;
     }
 
-    public void setShutdowsDate(Date shutdowsDate) {
+    public void setShutdowsDate(LocalDate shutdowsDate) {
         this.shutdowsDate = shutdowsDate;
     }
 
@@ -125,15 +86,19 @@ public class ApiUser {
         return isAdmin;
     }
 
-    public void setAdmin() {
-        this.isAdmin = this.role == 1;
+    public void setIsAdmin() {
+        for (TypeRoles role : TypeRoles.values()) {
+            if (role.equals(TypeRoles.ADMIN)) {
+                isAdmin = true;
+            }
+        }
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
