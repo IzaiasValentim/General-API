@@ -2,10 +2,8 @@ package com.izaiasvalentim.general.Domain;
 
 import com.izaiasvalentim.general.Domain.Enums.TypeRoles;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class ApiUser {
@@ -18,6 +16,7 @@ public class ApiUser {
     private String CPF;
     @Column(unique = true)
     private String email;
+    private String password;
     private String phone;
     private String address;
     @Column(name = "id_role")
@@ -45,7 +44,7 @@ public class ApiUser {
     }
 
     @Transient
-    public int getLevel() {
+    public int getRole() {
         return TypeRoles.getLevelById(this.role);
     }
 
@@ -92,6 +91,14 @@ public class ApiUser {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -128,11 +135,11 @@ public class ApiUser {
         return isAdmin;
     }
 
-    public void setAdmin() {
+    public void setIsAdmin() {
         this.isAdmin = this.role == 1;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsAdmin() {
         return isActive;
     }
 
