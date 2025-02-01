@@ -1,6 +1,5 @@
 package com.izaiasvalentim.general.Repository;
 
-import com.izaiasvalentim.general.Domain.ApiUser;
 import com.izaiasvalentim.general.Domain.BaseUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
