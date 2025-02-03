@@ -12,10 +12,4 @@ public class GeneralApplication {
         SpringApplication.run(GeneralApplication.class, args);
 
     }
-
-    @Bean
-        public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
 }
