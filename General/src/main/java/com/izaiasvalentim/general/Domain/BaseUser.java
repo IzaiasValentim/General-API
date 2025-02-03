@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "USERS")
 public class BaseUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true)
     private String username;

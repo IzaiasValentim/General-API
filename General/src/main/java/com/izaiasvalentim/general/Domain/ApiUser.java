@@ -6,9 +6,10 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "API_USER")
 public class ApiUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private BaseUser user;
@@ -87,11 +88,13 @@ public class ApiUser {
     }
 
     public void setIsAdmin() {
-        for (TypeRoles role : TypeRoles.values()) {
-            if (role.equals(TypeRoles.ADMIN)) {
+        for (Role role : this.user.getRoles()) {
+            if (role.getId() == TypeRoles.ADMIN.getId()) {
                 isAdmin = true;
+                break;
             }
         }
+        isAdmin = false;
     }
 
     public Boolean getIsActive() {
