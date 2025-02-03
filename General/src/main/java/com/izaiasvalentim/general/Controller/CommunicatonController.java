@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,21 +39,25 @@ public class CommunicatonController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasAuthority('SCOPE_MANAGER')")
     public ResponseEntity<?> addNewCommunicaton(@RequestBody Communication communication) {
         return new ResponseEntity<>(communicationService.registerNewCommunication(communication), HttpStatus.CREATED);
     }
 
     @PutMapping("/")
+    @PreAuthorize("hasAuthority('SCOPE_MANAGER')")
     public ResponseEntity<?> updateCommunicaton(@RequestBody CommunicationUpdateDTO communication) {
         return new ResponseEntity<>(communicationService.updateCommunication(communication), HttpStatus.OK);
     }
 
     @PutMapping("end-communication/{id}/")
+    @PreAuthorize("hasAuthority('SCOPE_MANAGER')")
     public ResponseEntity<?> endCommunicaton(@PathVariable int id) {
         return new ResponseEntity<>(communicationService.endCommunication(id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}/")
+    @PreAuthorize("hasAuthority('SCOPE_MANAGER')")
     public ResponseEntity<?> deleteCommunicaton(@PathVariable int id) {
         return new ResponseEntity<>(communicationService.deleteCommunication(id), HttpStatus.OK);
     }

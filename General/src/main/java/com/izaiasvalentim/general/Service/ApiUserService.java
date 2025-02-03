@@ -11,6 +11,8 @@ import com.izaiasvalentim.general.Repository.ApiUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -71,6 +73,14 @@ public class ApiUserService {
         ApiUser user = apiUserRepository.findByUser(baseUserService.findByUsername(username)).orElseThrow(() -> new
                 ResourceNotFoundException("Error updating user. No record was found with the username provided."));
         return new ApiUserReturnDTO(user);
+    }
+
+    public List<ApiUserReturnDTO> getAllUsers() {
+        List<ApiUserReturnDTO> returnDTOs = new ArrayList<>();
+        for (ApiUser user : apiUserRepository.findAll()) {
+            returnDTOs.add(new ApiUserReturnDTO(user));
+        }
+        return returnDTOs;
     }
 
     public void deleteUserByUsername(String username) {

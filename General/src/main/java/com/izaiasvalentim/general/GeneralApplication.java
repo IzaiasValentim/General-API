@@ -2,8 +2,6 @@ package com.izaiasvalentim.general;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class GeneralApplication {
@@ -12,10 +10,4 @@ public class GeneralApplication {
         SpringApplication.run(GeneralApplication.class, args);
 
     }
-
-    @Bean
-        public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
 }
