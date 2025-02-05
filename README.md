@@ -39,7 +39,8 @@ The following process flow was adopted to execute the project:
   - [x] Project and Requirements
   - [x] Planning
   - [x] [System Design](https://github.com/IzaiasValentim/General-API/tree/dev/models)
-  - [ ] [Development](https://github.com/IzaiasValentim/General-API/tree/dev/General/) (current phase)
+  - [ ] [Development](https://github.com/IzaiasValentim/General-API/tree/dev/General/) (current phase):
+    - [ ] https://github.com/IzaiasValentim/General-API/issues/7
   - [ ] Testing and Validation
 
 > [!NOTE]
