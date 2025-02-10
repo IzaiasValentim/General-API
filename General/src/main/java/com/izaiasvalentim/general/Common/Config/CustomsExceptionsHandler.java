@@ -52,4 +52,14 @@ public class CustomsExceptionsHandler {
     public ResponseEntity<StandardErrorModel> userAlreadyExists(UserAlreadyExistsException userAlreadyExistsException, HttpServletRequest request) {
         return generateStandardErrorModel(userAlreadyExistsException, request, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(RefreshTokenExpiredException.class)
+    public ResponseEntity<StandardErrorModel> refreshTokenExpired(RefreshTokenExpiredException refreshTokenExpiredException, HttpServletRequest request) {
+        return generateStandardErrorModel(refreshTokenExpiredException, request, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(AccessTokenExpiredException.class)
+    public ResponseEntity<StandardErrorModel> accessTokenExpired(AccessTokenExpiredException accessTokenExpiredException, HttpServletRequest request) {
+        return generateStandardErrorModel(accessTokenExpiredException, request, HttpStatus.UNAUTHORIZED);
+    }
 }

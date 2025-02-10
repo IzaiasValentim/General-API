@@ -48,7 +48,7 @@ public class ItemController {
         return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "deleteByBatch/")
+    @DeleteMapping(value = "deleteByBatch")
     @PreAuthorize("hasAuthority('SCOPE_MANAGER') || hasAuthority('SCOPE_INTERN')")
     public ResponseEntity<?> deleteItemByBatch(@RequestParam String batch) {
         var isExcluded = itemService.deleteItemStockByBatch(batch);
