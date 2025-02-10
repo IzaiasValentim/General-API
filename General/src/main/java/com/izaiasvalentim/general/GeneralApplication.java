@@ -8,6 +8,6 @@ public class GeneralApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GeneralApplication.class, args);
-    }
 
+    }
 }
