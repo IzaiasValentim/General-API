@@ -1,5 +1,6 @@
 package com.izaiasvalentim.general.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.izaiasvalentim.general.Domain.Enums.TypePurchaseStatus;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -18,7 +19,10 @@ public class Purchase {
     @OneToOne
     @JoinColumn(name = "apiUser_id")
     private ApiUser seller;
-    private String client;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="client_id", referencedColumnName = "id")
+    @JsonBackReference
+    private Client client;
     @Column(name = "status_id")
     private int status;
     @Temporal(TemporalType.TIMESTAMP)
@@ -30,7 +34,7 @@ public class Purchase {
     @JsonManagedReference
     private List<PurchaseItem> purchaseItems;
 
-    public Purchase(Double total, String paymentMethod, ApiUser seller, String client, int status,
+    public Purchase(Double total, String paymentMethod, ApiUser seller, Client client, int status,
                     Date realizationDate, Date hiredDate, Boolean isDeleted) {
         this.total = total;
         this.paymentMethod = paymentMethod;
@@ -77,11 +81,11 @@ public class Purchase {
         this.seller = seller;
     }
 
-    public String getClient() {
+    public Client getClient() {
         return client;
     }
 
-    public void setClient(String client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
