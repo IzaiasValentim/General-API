@@ -27,12 +27,14 @@ public class Client {
     @JsonManagedReference
     private List<Purchase> allPurchases;
     private Boolean active;
+    private Boolean isDeleted;
 
     public Client() {
 
     }
 
-    public Client(String name, String email, String identificationNumber, String address, String phoneNumber, String phoneNumberReserve, String payment) {
+    public Client(String name, String email, String identificationNumber, String address, String phoneNumber,
+                  String phoneNumberReserve, String payment, Boolean isDeleted) {
         this.name = name;
         this.email = email;
         this.identificationNumber = identificationNumber;
@@ -41,6 +43,7 @@ public class Client {
         this.phoneNumberReserve = phoneNumberReserve;
         this.payment = payment;
         this.active = false;
+        this.isDeleted = isDeleted;
     }
 
     public Integer getId() {
@@ -121,5 +124,13 @@ public class Client {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 }
