@@ -1,11 +1,6 @@
 package com.izaiasvalentim.general.Domain.DTO.Client;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.izaiasvalentim.general.Domain.Client;
-import com.izaiasvalentim.general.Domain.Purchase;
-import jakarta.persistence.*;
-
-import java.util.List;
 
 public class ClientRegisterDTO {
     private String name;
@@ -16,11 +11,13 @@ public class ClientRegisterDTO {
     private String phoneNumberReserve;
     private String payment;
     private String status;
+    private Boolean isDeleted;
 
     public ClientRegisterDTO() {
     }
 
-    public ClientRegisterDTO(String name, String email, String identificationNumber, String address, String phoneNumber, String phoneNumberReserve, String payment, String status) {
+    public ClientRegisterDTO(String name, String email, String identificationNumber, String address, String phoneNumber
+            , String phoneNumberReserve, String payment, String status) {
         this.name = name;
         this.email = email;
         this.identificationNumber = identificationNumber;
@@ -39,15 +36,16 @@ public class ClientRegisterDTO {
         this.phoneNumber = client.getPhoneNumber();
         this.phoneNumberReserve = client.getPhoneNumberReserve();
         this.payment = client.getPayment();
-        if(client.getActive()){
+        if (client.getActive()) {
             status = "Active";
-        }else{
+        } else {
             status = "Inactive";
         }
+        this.isDeleted = client.getDeleted();
     }
 
     public Client registerDTOToClient() {
-        return new Client(name, email, identificationNumber, address, phoneNumber, phoneNumberReserve, payment);
+        return new Client(name, email, identificationNumber, address, phoneNumber, phoneNumberReserve, payment, isDeleted);
     }
 
     public String getName() {
@@ -112,5 +110,13 @@ public class ClientRegisterDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 }
